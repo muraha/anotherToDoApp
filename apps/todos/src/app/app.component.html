@@ -1,9 +1,8 @@
-<div style="text-align: center">
-  <h1>Welcome to todos!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-    alt="Nx - Smart, Fast and Extensible Build System"
-  />
+<h1>Todos</h1>
+
+<button class="btn" (click)="addTodo()">Add Todo</button>
+<div class="container">
+  <todo-vectorsolv-app-todo-list
+    [todos]="todos"
+  ></todo-vectorsolv-app-todo-list>
 </div>
-<div>Message: {{ hello$ | async | json }}</div>

@@ -1,6 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 
-import { Message } from '@todo-vectorsolv-app/api-interfaces';
+import { Todo } from '@todo-vectorsolv-app/api-interfaces';
 
 import { AppService } from './app.service';
 
@@ -8,8 +8,13 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('hello')
-  getData(): Message {
+  @Get('getTodos')
+  getData() :Todo[] {
     return this.appService.getData();
+  }
+
+  @Post('addTodo')
+  addTodo() {
+    return this.appService.addTodo();
   }
 }
