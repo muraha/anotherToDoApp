@@ -1,3 +1,8 @@
-<ul>
-  <li *ngFor="let t of todos" class="todo">{{ t.title }}</li>
-</ul>
+<ol type="1">
+  <li *ngFor="let t of todos" class="todo">
+    <div>{{ t.id }}</div>
+    <div>{{ t.title }}</div>
+    <div>{{ t.content }}</div>
+    <button (click)="handleDelete(t.id)"> X </button>
+  </li>
+</ol>

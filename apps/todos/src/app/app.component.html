@@ -1,8 +1,6 @@
-<h1>Todos</h1>
-
-<button class="btn" (click)="addTodo()">Add Todo</button>
 <div class="container">
-  <todo-vectorsolv-app-todo-list
-    [todos]="todos"
-  ></todo-vectorsolv-app-todo-list>
+  <todo-vectorsolv-app-header headerName="Todos Tracker" (addHandler)="addTodo()"></todo-vectorsolv-app-header>
+  <todo-vectorsolv-app-todo-list [todos]="todos" (delHandler)="delTodo($event)"></todo-vectorsolv-app-todo-list>
 </div>
+
+<router-outlet name="item"></router-outlet>

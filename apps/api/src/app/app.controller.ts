@@ -1,10 +1,10 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post } from '@nestjs/common';
 
 import { Todo } from '@todo-vectorsolv-app/api-interfaces';
 
 import { AppService } from './app.service';
 
-@Controller()
+@Controller('todo')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
@@ -16,5 +16,11 @@ export class AppController {
   @Post('addTodo')
   addTodo() {
     return this.appService.addTodo();
+  }
+
+  @Delete('delTodo/:id')
+  delTodo(@Param('id') id: string) {
+    console.log(id)
+    return this.appService.delTodo(id);
   }
 }

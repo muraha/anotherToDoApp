@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ConsoleLogger } from '@nestjs/common';
 import { Todo } from '@todo-vectorsolv-app/api-interfaces';
 
 @Component({
@@ -7,10 +8,15 @@ import { Todo } from '@todo-vectorsolv-app/api-interfaces';
   styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent implements OnInit {
-  @Input() 
-  todos: Todo[] = [];
+  @Input() todos: Todo[] = [];
+  @Output() delHandler: EventEmitter<string> = new EventEmitter();
 
   constructor() {''}
 
   ngOnInit(): void {''}
+
+  handleDelete(id: string) {
+    console.log('fe', id)
+    this.delHandler.emit(id)
+  }
 }

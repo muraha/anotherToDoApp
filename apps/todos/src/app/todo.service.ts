@@ -1,14 +1,11 @@
-import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Todo } from '@todo-vectorsolv-app/api-interfaces';
 
-@Component({
-  selector: 'todo-vectorsolv-app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+@Injectable({
+  providedIn: 'root'
 })
-
-export class AppComponent {
+export class TodoService {
   todos: Todo[] = [];
 
   constructor(private http: HttpClient) {
@@ -17,6 +14,10 @@ export class AppComponent {
 
   fetch() {
     this.http.get<Todo[]>('/api/todo/getTodos').subscribe((t) => (this.todos = t));
+  }
+
+  getTodos(): Todo[] {
+    return this.todos
   }
 
   addTodo(): void {
