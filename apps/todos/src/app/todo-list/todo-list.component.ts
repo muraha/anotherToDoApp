@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ConsoleLogger } from '@nestjs/common';
 import { Todo } from '@todo-vectorsolv-app/api-interfaces';
 
 @Component({

@@ -3,9 +3,10 @@ import {TypeOrmModule} from '@nestjs/typeorm';
 
 import { TasksController } from './tasks.controller';
 import { TasksService } from './tasks.service';
+import config from '../../ormconfig'
 
 @Module({
-  imports: [TypeOrmModule.forRoot()],
+  imports: [TypeOrmModule.forRoot(config)],
   controllers: [TasksController],
   providers: [TasksService],
 })
