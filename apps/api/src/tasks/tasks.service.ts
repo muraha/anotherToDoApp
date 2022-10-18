@@ -1,65 +1,77 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository, Like } from 'typeorm';
 import { AddTaskDto } from './dto/add-task.dto';
 import { Task } from './entities/task.entity';
 
+const notFoundError = () => {
+  throw new NotFoundException({description:'Task does not exist or it was deleted'})
+}
+
 @Injectable()
 export class TasksService {
-  todos: Task[] = [{
-    id: '1',
-    title: 'first task',
-    isDone: false,
-    doneDate: null
-  }, {
-    id: '2',
-    title: 'second task',
-    isDone: false,
-    doneDate: null
-  }];
-
-  uID(): string {
-    return '_' + Math.random().toString(36).slice(2, 9);
-  };
+  constructor(
+    @InjectRepository(Task) private taskRepo: Repository<Task>
+  ) { }
 
   // @Get('getTasks')
-  getAll(word?: string): Task[] {
-    if(word) {
-      return this.todos.filter(t => t.title.indexOf(word) !== -1)
+  async getAll(
+    word?: string,
+  ): Promise<{ data: Task[], total: number }> {
+    let data: Task[]
+    let total: number
+
+    if (word) {
+      [data, total] = await this.taskRepo.findAndCountBy({
+        title: Like(`%${word}%`),
+      })
+      return { data, total }
     }
-    return this.todos
+
+    [data, total] = await this.taskRepo.findAndCount({
+      order: { id: 'ASC' }
+    })
+    return { data, total }
   }
 
   // @Get('getTask/:id')
-  getOneById(id: string): Task {
-    const task = this.todos.find(t => t.id === id)
-
-    if (!task) throw new NotFoundException()
+  async getOneById(id: number): Promise<Task> {
+    const task = await this.taskRepo.findOneBy({ id })
+    if (!task) notFoundError()
     return task
   }
 
   // @Post('addTask') 
-  addTask(addTaskDto: AddTaskDto): Task {
-    const newTask = {
-      id: this.uID(),
-      ...addTaskDto, 
-    }
-    this.todos.push(newTask);
-    return newTask
+  async addTask(addTaskDto: AddTaskDto): Promise<Task> {
+    const task = this.taskRepo.create(addTaskDto)
+
+    return await this.taskRepo.save(task)
   }
 
   // @Put('updateTask/:id')
-  updTask(addTaskDto: AddTaskDto, id: string): boolean {
-    const updatedList = this.todos.map(t => {
-      if (t.id === id) return { ...t, ...addTaskDto };
-      return t;
-    })
-    this.todos = updatedList
-    return true
+  async updTask(id: number, addTaskDto: AddTaskDto): Promise<Task> {
+    await this.taskRepo.update({ id }, addTaskDto)
+
+    return await this.taskRepo.findOneBy({ id });
+  }
+
+  // @Put('toggleTaskDone/:id')
+  async toggleTaskDone(id: number): Promise<Task> {
+    const date = new Date()
+    const doneDate = date.toISOString()
+    const { isDone } = await this.taskRepo.findOneBy({ id })
+    await this.taskRepo.update(
+        { id },
+        { isDone: !isDone, doneDate: isDone ? "" : doneDate }
+      )
+    return await this.taskRepo.findOneBy({ id });
   }
 
   // @Delete('delTask/:id')
-  delTask(id: string): boolean {
-    const filteredTodo = this.todos.filter(t => t.id !== id)
-    this.todos = filteredTodo
-    return true
+  async delTask(id: number): Promise<string> {
+    const task = await this.taskRepo.findOneBy({ id })
+    if(!task) notFoundError()
+    await this.taskRepo.delete({id})
+    return 'success'
   }
 }

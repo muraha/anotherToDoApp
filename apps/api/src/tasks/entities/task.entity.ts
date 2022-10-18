@@ -5,7 +5,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export class Task {
   @ApiProperty()
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @ApiProperty()
   @Column()
