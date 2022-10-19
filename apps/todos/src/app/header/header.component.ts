@@ -1,18 +1,19 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'todo-vectorsolv-app-header',
+  selector: 'todo-app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   @Input() headerName!: string;
-  @Output() addHandler: EventEmitter<void> = new EventEmitter();
+  @Input() total!: number;
+  @Output() addHandler: EventEmitter<string> = new EventEmitter();
 
   constructor() {''}
   ngOnInit(): void {''}
 
   handleAdd () {
-    this.addHandler.emit()
+    this.addHandler.emit('TestTask')
   }
 }

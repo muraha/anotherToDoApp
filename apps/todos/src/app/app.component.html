@@ -1,6 +1,4 @@
 <div class="container">
-  <todo-vectorsolv-app-header headerName="Todos Tracker" (addHandler)="addTodo()"></todo-vectorsolv-app-header>
-  <todo-vectorsolv-app-todo-list [todos]="todos" (delHandler)="delTodo($event)"></todo-vectorsolv-app-todo-list>
+  <todo-app-page-main></todo-app-page-main>
+  <router-outlet name="item"></router-outlet>
 </div>
-
-<router-outlet name="item"></router-outlet>

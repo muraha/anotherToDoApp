@@ -1,0 +1,23 @@
+<ol type="1">
+  <li *ngFor="let t of tasks" class="list-todo">
+    <div class="list-checkbox">
+      <input
+        class="list-checkbox-input"
+        type="checkbox"
+        name=""
+        id="{{ t.id }}"
+        [checked]="t.isDone"
+        (click)="handleTaskToggle($event.target)"
+      />
+      <label class="list-checkbox-label" for="{{ t.id }}">{{ t.title }}</label>
+      <div style="font-size: 8px; color: gray">id: {{ t.id }}</div>
+    </div>
+    <button
+      class="list-delButton"
+      (click)="handleTaskDelete($event.target)"
+      data-id="{{ t.id }}"
+    >
+      +
+    </button>
+  </li>
+</ol>

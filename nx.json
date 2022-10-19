@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "todo-vectorsolv-app",
+  "npmScope": "another-todo-app",
   "affected": {
     "defaultBase": "main"
   },

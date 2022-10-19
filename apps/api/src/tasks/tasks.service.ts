@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { DataTasks } from '@todo-vectorsolv-app/api-interfaces';
 import { Repository, Like } from 'typeorm';
 import { AddTaskDto } from './dto/add-task.dto';
 import { Task } from './entities/task.entity';
@@ -17,7 +18,7 @@ export class TasksService {
   // @Get('getTasks')
   async getAll(
     word?: string,
-  ): Promise<{ data: Task[], total: number }> {
+  ): Promise<DataTasks> {
     let data: Task[]
     let total: number
 
@@ -29,7 +30,7 @@ export class TasksService {
     }
 
     [data, total] = await this.taskRepo.findAndCount({
-      order: { id: 'ASC' }
+      order: { id: 'DESC' }
     })
     return { data, total }
   }
@@ -43,7 +44,11 @@ export class TasksService {
 
   // @Post('addTask') 
   async addTask(addTaskDto: AddTaskDto): Promise<Task> {
-    const task = this.taskRepo.create(addTaskDto)
+    const task = this.taskRepo.create({
+      ...addTaskDto,
+      isDone: false,
+      doneDate: "",
+    })
 
     return await this.taskRepo.save(task)
   }
@@ -55,8 +60,10 @@ export class TasksService {
     return await this.taskRepo.findOneBy({ id });
   }
 
-  // @Put('toggleTaskDone/:id')
+  // @Patch('toggleTaskDone/:id')
   async toggleTaskDone(id: number): Promise<Task> {
+    console.log("🚀 ~ file: tasks.service.ts ~ line 65 ~ TasksService ~ toggleTaskDone ~ id", id)
+    
     const date = new Date()
     const doneDate = date.toISOString()
     const { isDone } = await this.taskRepo.findOneBy({ id })
@@ -68,10 +75,10 @@ export class TasksService {
   }
 
   // @Delete('delTask/:id')
-  async delTask(id: number): Promise<string> {
+  async delTask(id: number): Promise<DataTasks> {
     const task = await this.taskRepo.findOneBy({ id })
     if(!task) notFoundError()
     await this.taskRepo.delete({id})
-    return 'success'
+    return (await this.getAll())
   }
 }

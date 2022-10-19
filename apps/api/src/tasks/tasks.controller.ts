@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from '@nestjs/common';
-import { ApiBadRequestResponse, ApiCreatedResponse, ApiInternalServerErrorResponse, ApiNotFoundResponse, ApiOkResponse, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { DataTasks } from '@todo-vectorsolv-app/api-interfaces';
 
 import { AddTaskDto } from './dto/add-task.dto';
 import { Task } from './entities/task.entity';
@@ -16,7 +17,7 @@ export class TasksController {
   @Get('getTasks')
   getAllTasks(
     @Query('word') word?: string,
-  ): Promise<{data:Task[], total:number}> {
+  ): Promise<DataTasks> {
     return this.tasksService.getAll(word);
   }
 
@@ -44,7 +45,7 @@ export class TasksController {
   }
 
   @ApiOkResponse({type: Task})
-  @Patch('toggleTaskDone/:id')
+  @Put('toggleTaskDone/:id')
   toggleTaskDone(
     @Param('id') id: number
   ): Promise<Task> {
@@ -54,7 +55,7 @@ export class TasksController {
   @ApiOkResponse({description: 'Successfully deleted'})
   @ApiNotFoundResponse({ description: 'The desired task was not found'})
   @Delete('delTask/:id')
-  deleteTask(@Param('id') id: number): Promise<string> {
+  deleteTask(@Param('id') id: number): Promise<DataTasks> {
     return this.tasksService.delTask(id);
   }
 }

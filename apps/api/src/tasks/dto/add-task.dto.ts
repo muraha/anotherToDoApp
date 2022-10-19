@@ -6,9 +6,9 @@ export class AddTaskDto {
   @IsAlphanumeric()
   title: string;
 
-  @ApiProperty()
-  isDone: boolean;
+  // @ApiProperty()
+  // isDone: boolean;
 
-  @ApiProperty({ required: false })
-  doneDate?: Date | null;
+  // @ApiProperty({ required: false })
+  // doneDate?: Date | null;
 }

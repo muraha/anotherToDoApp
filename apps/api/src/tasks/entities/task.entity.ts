@@ -1,8 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Generated, PrimaryGeneratedColumn } from "typeorm";
+import { ITask } from '@todo-vectorsolv-app/api-interfaces';
 
 @Entity()
-export class Task {
+export class Task implements ITask {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   id: number;
