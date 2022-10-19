@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from '@nestjs/common';
 import { ApiBadRequestResponse, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiQuery, ApiTags } from '@nestjs/swagger';
-import { DataTasks } from '@todo-vectorsolv-app/api-interfaces';
+import { DataTasks } from '@another-todo-app/api-interfaces';
 
 import { AddTaskDto } from './dto/add-task.dto';
 import { Task } from './entities/task.entity';
@@ -45,10 +45,12 @@ export class TasksController {
   }
 
   @ApiOkResponse({type: Task})
-  @Put('toggleTaskDone/:id')
+  @Patch('toggleTaskDone/:id')
   toggleTaskDone(
     @Param('id') id: number
   ): Promise<Task> {
+    console.log("🚀 ~ file: tasks.controller.ts", id)
+    
     return this.tasksService.toggleTaskDone(id);
   }
 

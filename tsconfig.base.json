@@ -15,10 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@todo-vectorsolv-app/api-interfaces": [
+      "@another-todo-app/api-interfaces": [
         "libs/api-interfaces/src/index.ts"
       ],
-      "@todo-vectorsolv-app/ui": ["libs/ui/src/index.ts"]
+      "@another-todo-app/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

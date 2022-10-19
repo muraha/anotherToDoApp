@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DataTasks } from '@todo-vectorsolv-app/api-interfaces';
+import { DataTasks } from '@another-todo-app/api-interfaces';
 import { Repository, Like } from 'typeorm';
 import { AddTaskDto } from './dto/add-task.dto';
 import { Task } from './entities/task.entity';
@@ -63,7 +63,7 @@ export class TasksService {
   // @Patch('toggleTaskDone/:id')
   async toggleTaskDone(id: number): Promise<Task> {
     console.log("🚀 ~ file: tasks.service.ts ~ line 65 ~ TasksService ~ toggleTaskDone ~ id", id)
-    
+
     const date = new Date()
     const doneDate = date.toISOString()
     const { isDone } = await this.taskRepo.findOneBy({ id })

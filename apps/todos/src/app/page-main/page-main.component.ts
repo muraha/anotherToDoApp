@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ITask } from '@todo-vectorsolv-app/api-interfaces';
+import { ITask } from '@another-todo-app/api-interfaces';
 import { TasksService } from '../tasks.service';
 
 @Component({
@@ -37,7 +37,6 @@ export class MainPageComponent implements OnInit {
   }
 
   toggleTask(id:number){
-    console.log("🚀 ~ file: page-main.component.ts ~ line 40 ~ TodosListPageComponent ~ toggleTask ~ id", id)
-    this.taskApi.toggleTaskDone(id)
+    this.taskApi.toggleTaskDone(id).subscribe()
   }
 }

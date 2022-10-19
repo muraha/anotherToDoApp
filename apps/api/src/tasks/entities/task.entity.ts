@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Column, Entity, Generated, PrimaryGeneratedColumn } from "typeorm";
-import { ITask } from '@todo-vectorsolv-app/api-interfaces';
+import { ITask } from '@another-todo-app/api-interfaces';
 
 @Entity()
 export class Task implements ITask {

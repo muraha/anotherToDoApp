@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ITask } from '@todo-vectorsolv-app/api-interfaces';
+import { ITask } from '@another-todo-app/api-interfaces';
 
 @Component({
   selector: 'todo-app-list',

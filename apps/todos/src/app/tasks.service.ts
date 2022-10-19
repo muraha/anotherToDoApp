@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DataTasks, ITask } from '@todo-vectorsolv-app/api-interfaces';
+import { DataTasks, ITask } from '@another-todo-app/api-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,9 @@ export class TasksService {
   constructor(private http: HttpClient) {}
 
   getAllTasks(word: string ='') {
-    return this.http.get<DataTasks>(`/api/tasks/getTasks?word=${word}`)
+    return this.http.get<DataTasks>(
+      `/api/tasks/getTasks${word ? '?word='+word : ''}`
+    )
   }
 
   getTaskById(id:number) {
@@ -25,7 +27,7 @@ export class TasksService {
   }
 
   toggleTaskDone(id:number) {
-    return this.http.put<ITask>(`/api/tasks/toggleTaskDone/${id}`, null)
+    return this.http.patch<ITask>(`/api/tasks/toggleTaskDone/${id}`, null)
   }
 
   delTask(id:number) {
