@@ -67,9 +67,17 @@
     color: white;
     transform: rotate(45deg);
     outline: none;
+    cursor: pointer;
 
-    &:active,
+    &:hover{
+        background-color: rgb(247, 129, 129);
+    }
+
+    &:active {
+        background-color: rgb(252, 81, 81);
+    }
+
     &:focus {
-        background-color: rgb(255, 108, 108);
+        outline: 1px solid rgb(252, 81, 81);
     }
 }

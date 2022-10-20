@@ -62,8 +62,6 @@ export class TasksService {
 
   // @Patch('toggleTaskDone/:id')
   async toggleTaskDone(id: number): Promise<Task> {
-    console.log("🚀 ~ file: tasks.service.ts ~ line 65 ~ TasksService ~ toggleTaskDone ~ id", id)
-
     const date = new Date()
     const doneDate = date.toISOString()
     const { isDone } = await this.taskRepo.findOneBy({ id })

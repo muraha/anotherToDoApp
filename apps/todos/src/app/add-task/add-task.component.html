@@ -1,0 +1,40 @@
+<div class="form-wrapper">
+  <div class="form-container">
+    <form class="add-form" (ngSubmit)="onSubmit()">
+      <div class="form-control">
+        <label for="title">Task</label>
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="title"
+          id="title"
+          placeholder="Add Task Summary"
+        />
+      </div>
+      <div class="form-control">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          name="description"
+          [(ngModel)]="description"
+          id="description"
+          placeholder="Add Description"
+        />
+      </div>
+      <input
+        type="submit"
+        value="Save Task"
+        class="btn btn-block"
+        style="width: 100%"
+      />
+    </form>
+    <button
+      class="btn form-cancel"
+      routerLink="/home"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+    >
+      Cancel
+    </button>
+  </div>
+</div>

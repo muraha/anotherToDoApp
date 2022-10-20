@@ -1,10 +1,14 @@
 <todo-app-header
   headerName="Task tracker"
-  [total]="tasksQty"
-  (addHandler)="addNewTask($event)"
 ></todo-app-header>
 <todo-app-list
   [tasks]="tasks"
+  (addTaskEvent)="addNewTask({title:''})"
   (deleteEvent)="delTask($event)"
   (toggleEvent)="toggleTask($event)"
 ></todo-app-list>
+<todo-app-footer
+  [taskQty]="tasksQty"
+  [doneQty]="doneQty"
+>
+</todo-app-footer>

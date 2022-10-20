@@ -4,20 +4,23 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { TodoListComponent } from './list/list.component';
 import { HeaderComponent } from './header/header.component';
 import { MainPageComponent } from './page-main/page-main.component';
 import { FooterComponent } from './footer/footer.component';
 import { ItemComponent } from './item/item.component';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 const routes: Routes = [
   { path: 'home', component: TodoListComponent },
+  { path: 'add', component: AddTaskComponent },
   {
-    path: 'item',
+    path: ':id',
     loadComponent: () =>
       import('./item/item.component').then((c) => c.ItemComponent),
-    outlet: 'item',
+    // outlet: 'item',
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
@@ -29,8 +32,10 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
     ItemComponent,
+    AddTaskComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes)],
+  imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes), FormsModule],
+  exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent],
 })

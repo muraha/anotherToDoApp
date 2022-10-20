@@ -7,7 +7,6 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Input() headerName!: string;
-  @Input() total!: number;
   @Output() addHandler: EventEmitter<string> = new EventEmitter();
 
   constructor() {''}

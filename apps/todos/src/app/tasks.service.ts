@@ -18,8 +18,8 @@ export class TasksService {
     return this.http.get<ITask>(`/api/tasks/getTask/${id}`)
   }
 
-  addTask(title:string) {
-    return this.http.post<ITask>('/api/tasks/addTask', {title})
+  addTask(data: {title:string}) {
+    return this.http.post<ITask>('/api/tasks/addTask', data)
   }
 
   updTask(id:number, title:string) {

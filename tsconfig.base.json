@@ -15,9 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@another-todo-app/api-interfaces": [
-        "libs/api-interfaces/src/index.ts"
-      ],
+      "@another-todo-app/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@another-todo-app/ui": ["libs/ui/src/index.ts"]
     }
   },
