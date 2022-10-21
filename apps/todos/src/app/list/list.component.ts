@@ -29,7 +29,8 @@ export class TodoListComponent implements OnInit {
     this.toggleEvent.emit(e.id)
   }
 
-  handleOpenDetails(e:any) {
-    this.router.navigate([`task/${e.id}`])
+  handleOpenDetails({target, data}: {target:any, data: number}) {
+    console.dir(target, data)
+    this.router.navigate([`task/${data}`])
   }
 }

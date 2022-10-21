@@ -1,0 +1,25 @@
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'todo-app-button',
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss'],
+})
+export class CloseButtonComponent implements OnInit {
+  @Input() text = '';
+  @Input() redirectTo = '';
+  @Input() secondary = false;
+  @Input('class') 'btn-second': string
+  @Output() btnClick = new EventEmitter<MouseEvent | KeyboardEvent>();
+
+  constructor(
+    private router: Router
+  ) {''}
+  ngOnInit(): void {''}
+
+  handleClick(e: MouseEvent | KeyboardEvent) {
+    this.btnClick.emit(e)
+    this.redirectTo && this.router.navigate([this.redirectTo]) 
+  }
+}

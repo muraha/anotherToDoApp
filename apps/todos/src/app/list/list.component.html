@@ -13,13 +13,13 @@
     <div style="font-size: 10px; color: gray">id: {{ t.id }}</div>
   </div>
   <div class="buttonsBlock">
-    <button
-      class="btn list-details"
-      (click)="handleOpenDetails($event.target)"
-      data-id="{{ t.id }}"
+    <todo-app-button
+      text="details"
+      [secondary]="true"
+      (btnClick)="handleOpenDetails({target: $event.target, data: t.id})"
     >
-      details
-    </button>
+    </todo-app-button>
+
     <button
       class="list-delButton"
       (click)="handleTaskDelete($event.target)"

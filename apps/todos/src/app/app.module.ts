@@ -12,7 +12,7 @@ import { MainPageComponent } from './page-main/page-main.component';
 import { FooterComponent } from './footer/footer.component';
 import { ItemComponent } from './item/item.component';
 import { AddTaskComponent } from './add-task/add-task.component';
-import { CloseButtonComponent } from './close-button/close-button.component';
+import { CloseButtonComponent } from './button/button.component';
 
 const routes: Routes = [
   { path: 'home', component: TodoListComponent },
