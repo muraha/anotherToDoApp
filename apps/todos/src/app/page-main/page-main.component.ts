@@ -23,6 +23,7 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.eventService.onSubmit().subscribe(data => this.addNewTask(data))
     this.eventService.onSearch().pipe(debounceTime(500)).subscribe(text => this.searchTasks(text))
+    this.eventService.onUpdate().subscribe(data => this.updateTask(data))
     this.getAllTasks()
   }
 
@@ -50,6 +51,13 @@ export class MainPageComponent implements OnInit {
 
   addNewTask(data:ITaskRequired) {
     this.tasksService.addTask(data).subscribe(
+      () => this.getAllTasks()
+      //? or manually push new task and increment qty
+    )
+  }
+
+  updateTask(data:ITask) {
+    this.tasksService.updTask(data.id, data).subscribe(
       () => this.getAllTasks()
       //? or manually push new task and increment qty
     )

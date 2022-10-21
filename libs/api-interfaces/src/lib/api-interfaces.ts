@@ -5,8 +5,10 @@ export interface ITaskRequired {
 
 export interface ITask extends ITaskRequired{
   id: number;
-  isDone?: boolean;
-  doneDate?: Date | null;
+  isDone: boolean;
+  doneDate: string;
+  createDate: string;
+  remindOnDate: string;
 }
 
 export interface DataTasks {

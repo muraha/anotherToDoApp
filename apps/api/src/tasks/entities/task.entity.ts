@@ -22,13 +22,13 @@ export class Task implements ITask {
 
   @ApiProperty()
   @Column()
-  createDate?: Date;
+  createDate: string;
   
   @ApiProperty({ required: false })
   @Column()
-  doneDate?: Date;
+  doneDate: string;
 
   @ApiProperty({ required: false })
   @Column()
-  remindOnDate?: Date;
+  remindOnDate: string;
 }

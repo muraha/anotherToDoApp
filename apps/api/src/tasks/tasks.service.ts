@@ -62,7 +62,16 @@ export class TasksService {
 
   // @Put('updateTask/:id')
   async updTask(id: number, addTaskDto: AddTaskDto): Promise<Task> {
-    await this.taskRepo.update({ id }, addTaskDto)
+    let doneDate = ''
+    if(addTaskDto.isDone && !addTaskDto.doneDate) {
+      const date = new Date()
+      doneDate = date.toISOString()
+    }
+
+    await this.taskRepo.update({ id }, {
+      ...addTaskDto,
+      doneDate,
+    })
 
     return await this.taskRepo.findOneBy({ id });
   }
@@ -74,7 +83,11 @@ export class TasksService {
     const { isDone } = await this.taskRepo.findOneBy({ id })
     await this.taskRepo.update(
         { id },
-        { isDone: !isDone, doneDate: isDone ? "" : doneDate }
+        { 
+          isDone: !isDone,
+          doneDate: isDone ? "" : doneDate,
+          remindOnDate: ''
+        }
       )
     return await this.taskRepo.findOneBy({ id });
   }

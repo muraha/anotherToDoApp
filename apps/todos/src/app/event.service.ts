@@ -22,6 +22,7 @@ import { Observable, Subject,  } from 'rxjs';
 export class EventService {
   private subject = new Subject();
   private subject2 = new Subject();
+  private subject3 = new Subject();
 
   constructor() {''}
 
@@ -40,6 +41,15 @@ export class EventService {
 
   onSearch():Observable<any> {
     return this.subject2.asObservable(); 
+  }
+
+  
+  updateTask(data: ITaskRequired) {
+    this.subject3.next(data)
+  }
+
+  onUpdate():Observable<any> {
+    return this.subject3.asObservable(); 
   }
 }
 

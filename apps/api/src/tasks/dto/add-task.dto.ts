@@ -9,16 +9,15 @@ export class AddTaskDto {
   @ApiProperty()
   description: string;
   
-  // @ApiProperty()
-  // @IsDateString()
-  // remindOn: Date;
+  @ApiProperty({ required: false })
+  remindOnDate?: string;
 
-  // @ApiProperty()
-  // isDone: boolean;
+  @ApiProperty({ required: false })
+  isDone?: boolean;
 
-  // @ApiProperty({ required: false })
-  // doneDate?: Date | null;
+  @ApiProperty({ required: false })
+  doneDate?: string;
 
-  // @ApiProperty({ required: false })
-  // createDate?: Date | null;
+  @ApiProperty({ required: false })
+  createDate?: string;
 }
