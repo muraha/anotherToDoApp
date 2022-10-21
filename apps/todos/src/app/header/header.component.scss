@@ -2,3 +2,39 @@
     display: flex;
     justify-content: space-between;
 }
+
+.form-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    & .form-control {
+        margin: 0;
+    }
+}
+
+.clearButton {
+    margin-left: 15px;
+    height: 20px;
+    width: 20px;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    transform: rotate(45deg);
+    outline: none;
+    cursor: pointer;
+    background-color: rgb(249, 172, 172);
+
+    &:hover{
+        background-color: rgb(247, 129, 129);
+    }
+
+    &:active {
+        background-color: rgb(252, 81, 81);
+    }
+
+    &:focus {
+        outline: 1px solid rgb(252, 81, 81);
+    }
+}
+

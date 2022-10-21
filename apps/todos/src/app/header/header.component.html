@@ -1,7 +1,25 @@
 <div class="header">
   <h1>{{ headerName }}</h1>
 
-  <todo-app-button text="Add Task" redirectTo="/add" (btnClick)="handleAdd()">
+  <div class="form-wrapper">
+    <form class="form-search">
+      <div class="form-control">
+        <input
+          (input)="handleSearch()"
+          type="text"
+          name="search"
+          id="search"
+          placeholder="Search"
+          [(ngModel)]="search"
+        />
+      </div>
+    </form>
+    <button (click)="clearInput()" class="clearButton">+</button>
+  </div>
 
-  </todo-app-button>
+  <todo-app-button
+    text="Add Task"
+    redirectTo="/add"
+    (btnClick)="handleAdd()"
+  ></todo-app-button>
 </div>

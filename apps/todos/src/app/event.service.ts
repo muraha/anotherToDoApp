@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, Subscription } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { ITaskRequired } from '@another-todo-app/api-interfaces';
+import { Observable, Subject,  } from 'rxjs';
 
 // export enum Events {
 //   'task submitted',
@@ -21,15 +21,25 @@ import { filter, map } from 'rxjs/operators';
 })
 export class EventService {
   private subject = new Subject();
+  private subject2 = new Subject();
 
   constructor() {''}
 
-  submitForm(data: any) {
+  submitForm(data: ITaskRequired) {
     this.subject.next(data)
   }
 
   onSubmit():Observable<any> {
     return this.subject.asObservable(); 
+  }
+
+
+  searchTask(text: string) {
+    this.subject2.next(text)
+  }
+
+  onSearch():Observable<any> {
+    return this.subject2.asObservable(); 
   }
 }
 

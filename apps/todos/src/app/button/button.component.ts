@@ -10,7 +10,7 @@ export class CloseButtonComponent implements OnInit {
   @Input() text = '';
   @Input() redirectTo = '';
   @Input() secondary = false;
-  @Input('class') 'btn-second': string
+  @Input() className = ''
   @Output() btnClick = new EventEmitter<MouseEvent | KeyboardEvent>();
 
   constructor(

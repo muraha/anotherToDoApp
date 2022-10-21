@@ -9,8 +9,8 @@ import { EventService } from '../event.service';
 })
 export class AddTaskComponent implements OnInit {
   @Output() addTaskEvent = new EventEmitter<{title:string}>();
-  title!: string;
-  description!: string;
+  title = '';
+  description = '';
 
   constructor(
     private eventService: EventService,
@@ -22,7 +22,7 @@ export class AddTaskComponent implements OnInit {
       alert('Please add a task title')
       return
     }
-    
+
     const newTask = {
       title: this.title,
       description: this.description,
