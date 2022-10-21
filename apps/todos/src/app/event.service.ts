@@ -24,18 +24,6 @@ export class EventService {
 
   constructor() {''}
 
-  // emit(event: string) {
-  //   console.log('emitted')
-  //   this.subject.next(event);
-  // }
-
-  // on(eventName: string, action: any): Subscription {
-  //   console.log('on')
-  //   return this.subject.pipe(
-  //     filter( (e: any) => e.name === eventName),
-  //     map( (e: any) => e["data"])).subscribe(action);
-  // }
-
   submitForm(data: any) {
     this.subject.next(data)
   }

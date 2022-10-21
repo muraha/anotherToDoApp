@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DataTasks, ITask } from '@another-todo-app/api-interfaces';
+import { DataTasks, ITask, ITaskRequired } from '@another-todo-app/api-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +18,12 @@ export class TasksService {
     return this.http.get<ITask>(`/api/tasks/getTask/${id}`)
   }
 
-  addTask(data: {title:string}) {
+  addTask(data: ITaskRequired) {
     return this.http.post<ITask>('/api/tasks/addTask', data)
   }
 
-  updTask(id:number, title:string) {
-    return this.http.put<ITask>(`/api/tasks/updateTask/${id}`, {title})
+  updTask(id:number, data: ITaskRequired) {
+    return this.http.put<ITask>(`/api/tasks/updateTask/${id}`, data)
   }
 
   toggleTaskDone(id:number) {

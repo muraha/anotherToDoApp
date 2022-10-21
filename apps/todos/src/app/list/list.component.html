@@ -1,5 +1,6 @@
-<div *ngFor="let t of tasks" class="list-todo">
-  <div class="list-checkbox">
+<div *ngFor="let t of tasks" >
+  <div *ngIf="!t.isDone || shouldShowAll" class="list-todo">
+  <div class="list-checkbox" >
     <input
       class="list-checkbox-input"
       type="checkbox"
@@ -9,15 +10,23 @@
       (click)="handleTaskToggle($event.target)"
     />
     <label class="list-checkbox-label" for="{{ t.id }}">{{ t.title }}</label>
-    <div style="font-size: 10px; color: gray">
-      id:
-      {{ t.id.toString().substring(0, 10)
-      }}<sup>{{ t.id.toString().substr(-3) }}</sup>
-    </div>
+    <div style="font-size: 10px; color: gray">id: {{ t.id }}</div>
   </div>
-  <button
-    class="list-delButton"
-    (click)="handleTaskDelete($event.target)"
-    data-id="{{ t.id }}"
-  >+</button>
+  <div class="buttonsBlock">
+    <button
+      class="btn list-details"
+      (click)="handleOpenDetails($event.target)"
+      data-id="{{ t.id }}"
+    >
+      details
+    </button>
+    <button
+      class="list-delButton"
+      (click)="handleTaskDelete($event.target)"
+      data-id="{{ t.id }}"
+    >
+      +
+    </button>
+  </div>
+</div>
 </div>

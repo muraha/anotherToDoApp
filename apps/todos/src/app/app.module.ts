@@ -12,16 +12,18 @@ import { MainPageComponent } from './page-main/page-main.component';
 import { FooterComponent } from './footer/footer.component';
 import { ItemComponent } from './item/item.component';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { CloseButtonComponent } from './close-button/close-button.component';
 
 const routes: Routes = [
   { path: 'home', component: TodoListComponent },
   { path: 'add', component: AddTaskComponent },
-  {
-    path: ':id',
-    loadComponent: () =>
-      import('./item/item.component').then((c) => c.ItemComponent),
-    // outlet: 'item',
-  },
+  { path: 'task/:id', component: ItemComponent },
+  // {
+  //   path: 'task/:id',
+  //   loadComponent: () =>
+  //     import('./item/item.component').then((c) => c.ItemComponent),
+  //   // outlet: 'item',
+  // },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 @NgModule({
@@ -33,8 +35,14 @@ const routes: Routes = [
     FooterComponent,
     ItemComponent,
     AddTaskComponent,
+    CloseButtonComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes), FormsModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes),
+    FormsModule,
+  ],
   exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent],

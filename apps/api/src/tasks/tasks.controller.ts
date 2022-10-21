@@ -48,9 +48,7 @@ export class TasksController {
   @Patch('toggleTaskDone/:id')
   toggleTaskDone(
     @Param('id') id: number
-  ): Promise<Task> {
-    console.log("🚀 ~ file: tasks.controller.ts", id)
-    
+  ): Promise<Task> {   
     return this.tasksService.toggleTaskDone(id);
   }
 

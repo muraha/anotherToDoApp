@@ -3,6 +3,9 @@
     justify-content: space-between;
     margin-bottom: 10px;
     align-items: center;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 5px 20px;
 }
 
 .list-checkbox{
@@ -58,16 +61,41 @@
     }
 }
 
+.buttonsBlock {
+    display: flex;
+    align-items: center;
+}
+
+.list-details {
+    background-color: #888888;
+    height: 30px;
+    padding: 5px 10px;
+    margin-right: 15px;
+    
+    &:hover{
+        background-color: #666;
+    }
+
+    &:active {
+        background-color: #222;
+    }
+
+    &:focus {
+        outline: 1px solid #222;
+    }
+}
+
 .list-delButton {
+    
     height: 20px;
     width: 20px;
-    background-color: rgb(249, 172, 172);
     border: none;
     border-radius: 50%;
     color: white;
     transform: rotate(45deg);
     outline: none;
     cursor: pointer;
+    background-color: rgb(249, 172, 172);
 
     &:hover{
         background-color: rgb(247, 129, 129);

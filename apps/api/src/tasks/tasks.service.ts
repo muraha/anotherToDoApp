@@ -44,10 +44,17 @@ export class TasksService {
 
   // @Post('addTask') 
   async addTask(addTaskDto: AddTaskDto): Promise<Task> {
+    const {title, description} = addTaskDto
+    const date = new Date()
+    const createDate = date.toISOString()
+
     const task = this.taskRepo.create({
-      ...addTaskDto,
+      title,
+      description: description ?? "",
+      createDate,
       isDone: false,
       doneDate: "",
+      remindOnDate: "",
     })
 
     return await this.taskRepo.save(task)

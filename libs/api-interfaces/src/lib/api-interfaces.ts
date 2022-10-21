@@ -1,6 +1,10 @@
-export interface ITask {
-  id: number;
+export interface ITaskRequired {
   title: string;
+  description: string;
+}
+
+export interface ITask extends ITaskRequired{
+  id: number;
   isDone?: boolean;
   doneDate?: Date | null;
 }

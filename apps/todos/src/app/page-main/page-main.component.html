@@ -1,11 +1,15 @@
 <todo-app-header
   headerName="Task tracker"
 ></todo-app-header>
+
+<button class="btn" (click)="toggleShowTasks()"> 
+  {{shouldShowAll ? "hide done tasks" : "show all tasks"}}
+  </button>
 <todo-app-list
   [tasks]="tasks"
-  (addTaskEvent)="addNewTask({title:''})"
   (deleteEvent)="delTask($event)"
   (toggleEvent)="toggleTask($event)"
+  [shouldShowAll]="shouldShowAll"
 ></todo-app-list>
 <todo-app-footer
   [taskQty]="tasksQty"

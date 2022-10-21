@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ITask } from '@another-todo-app/api-interfaces';
+import { ITask, ITaskRequired } from '@another-todo-app/api-interfaces';
 import { EventService } from '../event.service';
 import { TasksService } from '../tasks.service';
 
@@ -9,57 +9,58 @@ import { TasksService } from '../tasks.service';
   styleUrls: ['./page-main.component.scss'],
 })
 export class MainPageComponent implements OnInit {
+  shouldShowAll = false
   tasks: ITask[] = []
   tasksQty = 0
   doneQty = 0
 
   constructor(
-    private taskApi: TasksService,
+    private tasksService: TasksService,
     private eventService: EventService,
   ) { 
-        this.eventService.onSubmit().subscribe((d) => this.addNewTask(d))
+    this.eventService.onSubmit().subscribe(data => this.addNewTask(data))
   }
 
   ngOnInit(): void {
     this.getAllTasks()
-    // this.eventService.on('task submitted', this.getAllTasks())
   }
 
-  
-
-  sortByDone(t: ITask[]) {
-    return t.sort((a, b) => Number(a.isDone) - Number(b.isDone))
-  }
+  // sortByDone(t: ITask[]) {
+  //   return t.sort((a, b) => Number(a.isDone) - Number(b.isDone))
+  // }
 
   calcDone(t:ITask[]){
     return t.filter(t => t.isDone).length
   }
 
+  toggleShowTasks() {
+    this.shouldShowAll = !this.shouldShowAll
+  }
+
   getAllTasks() {
-    this.taskApi.getAllTasks().subscribe(data => {
-      const { data: tasks, total: qty } = data
-      this.tasks = this.sortByDone(tasks)
+    this.tasksService.getAllTasks().subscribe(({ data: tasks, total: qty }) => {
+      this.tasks = tasks
       this.tasksQty = qty
       this.doneQty = this.calcDone(tasks)
     })
   }
 
-  addNewTask(data:{title:string}) {
-    this.taskApi.addTask(data).subscribe(
+  addNewTask(data:ITaskRequired) {
+    this.tasksService.addTask(data).subscribe(
       () => this.getAllTasks()
     )
   }
 
   delTask(id: number) {
-    this.taskApi.delTask(id).subscribe(({ data, total }) => {
-      this.tasks = this.sortByDone(data)
-      this.tasksQty = total
-      this.doneQty = this.calcDone(data)
+    this.tasksService.delTask(id).subscribe(({ data: tasks, total: qty }) => {
+      this.tasks = tasks
+      this.tasksQty = qty
+      this.doneQty = this.calcDone(tasks)
     })
   }
 
   toggleTask(id: number) {
-    this.taskApi.toggleTaskDone(id).subscribe(
+    this.tasksService.toggleTaskDone(id).subscribe(
       () => this.getAllTasks()
     )
   }

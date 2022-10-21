@@ -1,5 +1,5 @@
-<div class="form-wrapper">
-  <div class="form-container">
+<div class="wrapper">
+  <div class="content">
     <form class="add-form" (ngSubmit)="onSubmit()">
       <div class="form-control">
         <label for="title">Task</label>
@@ -28,13 +28,6 @@
         style="width: 100%"
       />
     </form>
-    <button
-      class="btn form-cancel"
-      routerLink="/home"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page"
-    >
-      Cancel
-    </button>
+    <todo-app-close-button text="Cancel"></todo-app-close-button>
   </div>
 </div>
