@@ -49,10 +49,12 @@ export class MainPageComponent implements OnInit {
     })
   }
 
-  addNewTask(data:ITaskRequired) {
+  addNewTask(data:ITask) {
     this.tasksService.addTask(data).subscribe(
-      () => this.getAllTasks()
-      //? or manually push new task and increment qty
+      (t) => {
+        this.tasks.unshift(t)
+        this.tasksQty += 1
+      }
     )
   }
 

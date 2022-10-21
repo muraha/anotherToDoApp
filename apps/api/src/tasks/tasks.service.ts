@@ -50,7 +50,7 @@ export class TasksService {
 
     const task = this.taskRepo.create({
       title,
-      description: description ?? "",
+      description,
       createDate,
       isDone: false,
       doneDate: "",
