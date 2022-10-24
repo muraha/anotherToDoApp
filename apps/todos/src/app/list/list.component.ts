@@ -22,11 +22,11 @@ export class TodoListComponent implements OnInit {
 
 // TODO: add EventTarget type here and somehow consume dataset
   handleTaskDelete(e:any) { 
-    this.deleteEvent.emit(e.id)
+    this.deleteEvent.emit(Number(e.id))
   }
 
   handleTaskToggle(e:any) {
-    this.toggleEvent.emit(e.id)
+    this.toggleEvent.emit(Number(e.id))
   }
 
   handleOpenDetails({target, data}: {target:any, data: number}) {

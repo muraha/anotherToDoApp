@@ -93,10 +93,12 @@ export class TasksService {
   }
 
   // @Delete('delTask/:id')
-  async delTask(id: number): Promise<DataTasks> {
+  async delTask(id: number): Promise<any> {
     const task = await this.taskRepo.findOneBy({ id })
     if(!task) notFoundError()
     await this.taskRepo.delete({id})
-    return (await this.getAll())
+    return {
+      status: 'success',
+    }
   }
 }

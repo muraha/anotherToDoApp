@@ -3,7 +3,7 @@ import {IsAlphanumeric} from 'class-validator';
 
 export class AddTaskDto {
   @ApiProperty()
-  @IsAlphanumeric()
+  // @IsAlphanumeric()
   title: string;
 
   @ApiProperty()
