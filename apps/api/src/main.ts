@@ -29,3 +29,6 @@ async function bootstrap() {
 }
 
 bootstrap();
+
+// const CLIENT_ID = '232118983482-7aehhja6qc5mbjlhn3rjbci05oiiej5h.apps.googleusercontent.com';
+// const API_KEY = 'AIzaSyCJH7D32GsKRqlBCHQtfZg8tTZUFDlLtFo';
