@@ -28,7 +28,7 @@ export class ItemComponent implements OnInit {
     //TODO: update to remove unnecessary reload and data population.
     //! on init load I do not have task data
     const url = this.router.url
-    this.id = Number(url.split('/')[2])
+    this.id = parseInt(url.split('/')[2], 10)
 
     this.tasksService.getTaskById(this.id).subscribe((t) => {
       if (t.createDate) {

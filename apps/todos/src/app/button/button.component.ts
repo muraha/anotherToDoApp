@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class CloseButtonComponent implements OnInit {
   @Input() text = '';
-  @Input() redirectTo = '';
+  @Input() redirectTo: object|string = '';
   @Input() secondary = false;
   @Input() className = ''
   @Output() btnClick = new EventEmitter<MouseEvent | KeyboardEvent>();

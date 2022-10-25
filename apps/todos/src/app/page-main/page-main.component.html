@@ -1,4 +1,7 @@
-<todo-app-header headerName="Task tracker"></todo-app-header>
+
+<div class="container">
+
+  <todo-app-header headerName="Task tracker"></todo-app-header>
 
 <todo-app-button
   text="{{ shouldShowAll ? 'hide done tasks' : 'show all tasks' }}"
@@ -12,4 +15,7 @@
   (toggleEvent)="toggleTask($event)"
   [shouldShowAll]="shouldShowAll"
 ></todo-app-list>
+
 <todo-app-footer [tasks]="tasks"> </todo-app-footer>
+
+</div>

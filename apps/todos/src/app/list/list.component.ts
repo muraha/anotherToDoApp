@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+// import {MatTableModule} from '@angular/material/table';
+
 
 import { ITask } from '@another-todo-app/api-interfaces';
 
@@ -13,6 +15,7 @@ export class TodoListComponent implements OnInit {
   @Input() shouldShowAll = false;
   @Output() deleteEvent = new EventEmitter<number>();
   @Output() toggleEvent = new EventEmitter<number>();
+  columnsToDisplay = ['isDone', 'title', 'id'];
 
   constructor(
     private router: Router
@@ -21,16 +24,15 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {''}
 
 // TODO: add EventTarget type here and somehow consume dataset
-  handleTaskDelete(e:any) { 
-    this.deleteEvent.emit(Number(e.id))
+  handleTaskDelete(et:any) { 
+    this.deleteEvent.emit(Number(et.id))
   }
 
-  handleTaskToggle(e:any) {
-    this.toggleEvent.emit(Number(e.id))
+  handleTaskToggle(et:any) {
+    this.toggleEvent.emit(Number(et.id))
   }
 
   handleOpenDetails({target, data}: {target:any, data: number}) {
-    console.dir(target, data)
-    this.router.navigate([`task/${data}`])
+    this.router.navigate([ {outlets: {dialog: ['task', data]}} ])
   }
 }

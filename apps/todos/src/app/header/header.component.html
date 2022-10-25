@@ -19,7 +19,7 @@
 
   <todo-app-button
     text="Add Task"
-    redirectTo="/add"
+    [redirectTo]="{outlets: {dialog: ['add']}}"
     (btnClick)="handleAdd()"
   ></todo-app-button>
 </div>

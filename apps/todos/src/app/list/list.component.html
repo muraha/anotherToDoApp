@@ -1,32 +1,61 @@
-<div *ngFor="let t of tasks" >
+<div *ngFor="let t of tasks">
   <div *ngIf="!t.isDone || shouldShowAll" class="list-todo">
-  <div class="list-checkbox" >
-    <input
-      class="list-checkbox-input"
-      type="checkbox"
-      name=""
-      id="{{ t.id }}"
-      [checked]="t.isDone"
-      (click)="handleTaskToggle($event.target)"
-    />
-    <label class="list-checkbox-label" for="{{ t.id }}">{{ t.title }}</label>
-    <div style="font-size: 10px; color: gray">id: {{ t.id }}</div>
-  </div>
-  <div class="buttonsBlock">
-    <todo-app-button
-      text="details"
-      [secondary]="true"
-      (btnClick)="handleOpenDetails({target: $event.target, data: t.id})"
-    >
-    </todo-app-button>
+    <div class="list-checkbox">
+      <input
+        class="list-checkbox-input"
+        type="checkbox"
+        name=""
+        id="{{ t.id }}"
+        [checked]="t.isDone"
+        (click)="handleTaskToggle($event.target)"
+      />
+      <label class="list-checkbox-label" for="{{ t.id }}">{{ t.title }}</label>
+      <div style="font-size: 10px; color: gray">id: {{ t.id }}</div>
+    </div>
+    <div class="buttonsBlock">
+      <todo-app-button
+        text="details"
+        [secondary]="true"
+        (btnClick)="handleOpenDetails({ target: $event.target, data: t.id })"
+      >
+      </todo-app-button>
 
-    <button
-      class="list-delButton"
-      (click)="handleTaskDelete($event.target)"
-      data-id="{{ t.id }}"
-    >
-      +
-    </button>
+      <button
+        class="list-delButton"
+        (click)="handleTaskDelete($event.target)"
+        data-id="{{ t.id }}"
+      >
+        +
+      </button>
+    </div>
   </div>
 </div>
-</div>
+<!-- 
+<table mat-table [dataSource]="tasks">
+  <ng-container matColumnDef="isDone">
+    <th mat-header-cell *matHeaderCellDef>status</th>
+    <td mat-cell *matCellDef="let task">{{ task.isDone }}</td>
+  </ng-container>
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Title</th>
+    <td mat-cell *matCellDef="let task">{{ task.title }}</td>
+  </ng-container>
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>id</th>
+    <td mat-cell *matCellDef="let task">{{ task.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef>action btn</th>
+    <td mat-cell *matCellDef="let task">
+      <todo-app-button
+        text="details"
+        [secondary]="true"
+        (btnClick)="handleOpenDetails({ target: $event.target, data: task.id })"
+      ></todo-app-button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+</table> -->
