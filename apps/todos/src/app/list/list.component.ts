@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-// import {MatTableModule} from '@angular/material/table';
 
 
 import { ITask } from '@another-todo-app/api-interfaces';

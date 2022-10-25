@@ -1,9 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { ITask } from '@another-todo-app/api-interfaces';
 
 @Entity()
-export class Task implements ITask {
+export class Task extends BaseEntity implements ITask  {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   id: number;

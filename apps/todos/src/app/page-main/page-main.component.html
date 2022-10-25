@@ -1,21 +1,18 @@
-
 <div class="container">
-
   <todo-app-header headerName="Task tracker"></todo-app-header>
 
-<todo-app-button
-  text="{{ shouldShowAll ? 'hide done tasks' : 'show all tasks' }}"
-  (btnClick)="toggleShowTasks()"
-  [secondary]="true"
-></todo-app-button>
+  <todo-app-button
+    text="{{ shouldShowAll ? 'hide done tasks' : 'show all tasks' }}"
+    (btnClick)="toggleShowTasks()"
+    [secondary]="true"
+  ></todo-app-button>
 
-<todo-app-list
-  [tasks]="tasks"
-  (deleteEvent)="delTask($event)"
-  (toggleEvent)="toggleTask($event)"
-  [shouldShowAll]="shouldShowAll"
-></todo-app-list>
+  <todo-app-list
+    [tasks]="(tasks) || []"
+    (deleteEvent)="delTask($event)"
+    (toggleEvent)="toggleTask($event)"
+    [shouldShowAll]="shouldShowAll"
+  ></todo-app-list>
 
-<todo-app-footer [tasks]="tasks"> </todo-app-footer>
-
+  <todo-app-footer [tasks]="tasks"> </todo-app-footer>
 </div>

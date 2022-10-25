@@ -8,12 +8,12 @@ import { ButtonModule } from '../button/button.module';
 
 
 const routes: Routes = [
-  { path: '/', component: ItemComponent }
+  { path: '', component: ItemComponent }
 ];
 
 @NgModule({
   declarations: [
-    ItemComponent,
+    // ItemComponent,
   ],
   imports: [
     CommonModule,

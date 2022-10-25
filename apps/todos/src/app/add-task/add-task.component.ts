@@ -32,7 +32,7 @@ export class AddTaskComponent implements OnInit {
     
     this.title = ''
     this.description = ''
-    this.router.navigate(['/home'])
+    this.router.navigate(['/'])
   }
 
   ngOnInit(): void {''}

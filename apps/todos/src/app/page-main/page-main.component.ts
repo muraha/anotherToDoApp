@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ITask } from '@another-todo-app/api-interfaces';
 
-
-import { debounceTime } from 'rxjs';
+import { BehaviorSubject, debounceTime } from 'rxjs';
 import { EventService } from '../event.service';
 import { TasksService } from '../tasks.service';
 
@@ -11,7 +10,7 @@ import { TasksService } from '../tasks.service';
   templateUrl: './page-main.component.html',
   styleUrls: ['./page-main.component.scss'],
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit, OnDestroy {
   shouldShowAll = false
   tasks: ITask[] = []
   tasksQty = 0
@@ -21,11 +20,18 @@ export class MainPageComponent implements OnInit {
     private eventService: EventService,
   ) { }
 
+  destroy$ = new BehaviorSubject<void>(undefined);
+
   ngOnInit(): void {
-    this.eventService.onSubmit().subscribe(data => this.addNewTask(data))
+    this.eventService.onSubmit().subscribe(data => this.addNewTask(data));
     this.eventService.onUpdate().subscribe(data => this.updateTask(data))
     this.eventService.onSearch().pipe(debounceTime(500)).subscribe(text => this.searchTasks(text))
     this.getAllTasks()
+  }
+
+  ngOnDestroy() {
+    console.log('DESTROYED')
+    this.destroy$.next();
   }
 
   toggleShowTasks() {
@@ -45,27 +51,33 @@ export class MainPageComponent implements OnInit {
     })
   }
 
-  addNewTask(data:ITask) {
+  addNewTask(data: ITask) {
     this.tasksService.addTask(data).subscribe(t => {
       this.tasks.push(t)
-      this.tasks = this.tasks.sort((a,b) => b.id - a.id)
+      this.tasks = this.tasks.sort((a, b) => b.id - a.id)
       this.tasksQty += 1
     })
   }
 
-  updateTask(data:ITask) {
-    this.tasksService.updTask(data.id, data).subscribe(() => {
-      this.getAllTasks()
+  updateTask(data: ITask) {
+    const sub = this.tasksService.updTask(data.id, data).subscribe(t => {
+      this.tasks = this.tasks.map(tt => {
+        if (tt.id === t.id) return t
+        return tt
+      })
 
-      //TODO: update manually
+      sub.unsubscribe();
     })
   }
-  
+
   toggleTask(id: number) {
     this.tasksService.toggleTaskDone(id).subscribe(() => {
-      this.getAllTasks()
-
-      //TODO: update manually
+      this.tasks = this.tasks.map(t => {
+        if (t.id === id) {
+          t.isDone = !t.isDone
+        }
+        return t
+      })
     })
   }
 

@@ -23,7 +23,7 @@ export class TasksService {
   }
 
   updTask(id:number, data: ITaskRequired) {
-    return this.http.put<ITask>(`/api/tasks/updateTask/${id}`, data)
+    return this.http.put<ITask>(`/api/tasks/updateTask/${id}`, data);
   }
 
   toggleTaskDone(id:number) {

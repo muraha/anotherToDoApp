@@ -17,6 +17,8 @@
     <button (click)="clearInput()" class="clearButton">+</button>
   </div>
 
+  <!-- <button mat-button (click)="dialogOpen()">Open dialog</button> -->
+
   <todo-app-button
     text="Add Task"
     [redirectTo]="{outlets: {dialog: ['add']}}"
