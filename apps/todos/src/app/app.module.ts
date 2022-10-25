@@ -11,19 +11,19 @@ import { TodoListComponent } from './list/list.component';
 import { HeaderComponent } from './header/header.component';
 import { MainPageComponent } from './page-main/page-main.component';
 import { FooterComponent } from './footer/footer.component';
-import { ItemComponent } from './item/item.component';
 import { AddTaskComponent } from './add-task/add-task.component';
-import { CloseButtonComponent } from './button/button.component';
+import { ButtonModule } from './button/button.module';
+import { ItemComponent } from './item/item.component';
 
 const routes: Routes = [
   { path: 'home', component: MainPageComponent,},
   { path: 'add', component: AddTaskComponent, outlet:'dialog'},
-  // { path: 'task/:id', component: ItemComponent, outlet:'dialog'},
-  {
-    path: 'task/:id',
-    loadComponent: () => import('./item/item.component').then(c => c.ItemComponent),
-    outlet:'dialog',
-  },
+  { path: 'task/:id', component: ItemComponent, outlet:'dialog'},
+  // {
+  //   path: 'task/:id',
+  //   // outlet:'dialog',
+  //   loadComponent: () => import('./item/item.module').then(m => m.ItemModule),
+  // },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 @NgModule({
@@ -33,9 +33,8 @@ const routes: Routes = [
     TodoListComponent,
     HeaderComponent,
     FooterComponent,
-    ItemComponent,
     AddTaskComponent,
-    CloseButtonComponent,
+    ItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +42,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     MatTableModule,
+    ButtonModule
   ],
   exports: [RouterModule],
   providers: [],

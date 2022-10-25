@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
 })
-export class CloseButtonComponent implements OnInit {
+export class ButtonComponent implements OnInit {
   @Input() text = '';
   @Input() redirectTo: object|string = '';
   @Input() secondary = false;

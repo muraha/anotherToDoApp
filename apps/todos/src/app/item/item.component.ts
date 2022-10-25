@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ITask } from '@another-todo-app/api-interfaces';
 import { EventService } from '../event.service';
 import { TasksService } from '../tasks.service';
 

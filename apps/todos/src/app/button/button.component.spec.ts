@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CloseButtonComponent } from './button.component';
+import { ButtonComponent } from './button.component';
 
 describe('CloseButtonComponent', () => {
-  let component: CloseButtonComponent;
-  let fixture: ComponentFixture<CloseButtonComponent>;
+  let component: ButtonComponent;
+  let fixture: ComponentFixture<ButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CloseButtonComponent],
+      declarations: [ButtonComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CloseButtonComponent);
+    fixture = TestBed.createComponent(ButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

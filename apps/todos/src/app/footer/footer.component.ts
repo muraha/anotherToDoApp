@@ -25,7 +25,7 @@ export class FooterComponent implements OnChanges {
   ngOnChanges(): void {''
   const numberOfTaskFor = this.getTaskCounterPerPeriod(this.tasks)
 
-    console.log("🚀 ~ file: footer.component.ts ~ line 20 ~ FooterComponent ~ ngOnChanges ~ ngOnChanges")
+    console.log("🚀 ~ file: footer.component.ts ~ ngOnChanges")
     this.doneQty = this.calcDone(this.tasks)
     this.doneQtyT = numberOfTaskFor(Period.today)
     this.doneQtyW = numberOfTaskFor(Period.week)
