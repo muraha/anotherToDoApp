@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 
 import { ITask } from '@another-todo-app/api-interfaces';
+import { ItemDialogComponent } from '../dialog/item/item.component';
 
 @Component({
   selector: 'todo-app-list',
@@ -17,7 +19,8 @@ export class TodoListComponent implements OnInit {
   columnsToDisplay = ['isDone', 'title', 'id'];
 
   constructor(
-    private router: Router
+    public dialog: MatDialog,
+    private router: Router,
   ) {''}
 
   ngOnInit(): void {''}
@@ -31,7 +34,18 @@ export class TodoListComponent implements OnInit {
     this.toggleEvent.emit(Number(et.id))
   }
 
-  handleOpenDetails({target, data}: {target:any, data: number}) {
-    this.router.navigate([ {outlets: {dialog: ['task', data]}} ])
+  handleOpenDetails(id: number) {
+    this.router.navigate([ {outlets: {dialog: ['task', id]}} ])
+  }
+
+  dialogOpen(id: number) {
+    const dialogRef = this.dialog.open(ItemDialogComponent, {
+      minWidth: '50vw',
+      data: {id}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed'), result;
+    });
   }
 }

@@ -14,9 +14,15 @@
     </div>
     <div class="buttonsBlock">
       <todo-app-button
-        text="details"
+        text="details (dialog)"
         [secondary]="true"
-        (btnClick)="handleOpenDetails({ target: $event.target, data: t.id })"
+        (btnClick)="dialogOpen(t.id)"
+      >
+      </todo-app-button>
+      <todo-app-button
+        text="details (router)"
+        [secondary]="true"
+        (btnClick)="handleOpenDetails(t.id)"
       >
       </todo-app-button>
 

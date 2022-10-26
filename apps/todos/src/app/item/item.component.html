@@ -1,20 +1,27 @@
 <div class="wrapper">
   <div class="content">
-    <input class="title" type="text" value="{{ title }}" [(ngModel)]="title"/>
-    <textarea class="details" [(ngModel)]="description">{{ description }}</textarea>
+    <input class="title" type="text" value="{{ title }}" [(ngModel)]="title" />
+    <textarea class="details" [(ngModel)]="description">
+      {{ description }}
+  </textarea
+    >
     <p>created date: {{ createDate }}</p>
     <p *ngIf="doneDate">completed on: {{ doneDate }}</p>
 
     <p>
-        is done?:
-        <input type="checkbox" [checked]="isDone" [(ngModel)]="isDone">
+      is done?:
+      <input type="checkbox" [checked]="isDone" [(ngModel)]="isDone" />
     </p>
     <p *ngIf="!isDone">
-        set reminder on:
-        <input type="datetime-local" [(ngModel)]="remindOnDate"/>
+      set reminder on:
+      <input type="datetime-local" [(ngModel)]="remindOnDate" />
     </p>
 
-    <todo-app-button text="Update" redirectTo="/" (btnClick)="updateTask()"></todo-app-button>
+    <todo-app-button
+      text="Update"
+      redirectTo="/"
+      (btnClick)="updateTask()"
+    ></todo-app-button>
     <todo-app-button text="Close" redirectTo="/"></todo-app-button>
   </div>
 </div>

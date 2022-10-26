@@ -16,6 +16,7 @@ import { AddTaskComponent } from './add-task/add-task.component';
 import { ButtonModule } from './button/button.module';
 import { ItemComponent } from './item/item.component';
 import { AddComponent } from './dialog/add/add.component';
+import { ItemDialogComponent } from './dialog/item/item.component';
 
 const routes: Routes = [
   { path: 'home', component: MainPageComponent },
@@ -38,6 +39,7 @@ const routes: Routes = [
     AddTaskComponent,
     ItemComponent,
     AddComponent,
+    ItemDialogComponent
   ],
   imports: [
     BrowserAnimationsModule,

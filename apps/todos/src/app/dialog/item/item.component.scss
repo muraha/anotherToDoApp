@@ -1,0 +1,31 @@
+$margin: 15px;
+$border-size: 2px;
+
+@mixin outline {
+    border: none;
+    outline: none;
+    &:active,
+    &:focus {
+        border-bottom: $border-size solid black;
+    }
+}
+
+.title {
+    @include outline();
+    font-size: 24px;
+    margin-bottom: $margin;
+
+    &:focus {
+        margin-bottom: $margin - $border-size;
+    }
+}
+
+.details {
+    @include outline();
+    font-size: 14px;
+    width: 100%;
+    min-height: 100px;
+    padding: 5px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
