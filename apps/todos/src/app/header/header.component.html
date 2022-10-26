@@ -1,6 +1,5 @@
 <div class="header">
   <h1>{{ headerName }}</h1>
-
   <div class="form-wrapper">
     <form class="form-search">
       <div class="form-control">
@@ -17,11 +16,13 @@
     <button (click)="clearInput()" class="clearButton">+</button>
   </div>
 
-  <!-- <button mat-button (click)="dialogOpen()">Open dialog</button> -->
+  <todo-app-button
+    text="Add Task (dialog)"
+    (btnClick)="dialogOpen()"
+  ></todo-app-button>
 
   <todo-app-button
-    text="Add Task"
-    [redirectTo]="{outlets: {dialog: ['add']}}"
-    (btnClick)="handleAdd()"
+    text="Add Task (router)"
+    [redirectTo]="{ outlets: { dialog: ['add'] } }"
   ></todo-app-button>
 </div>

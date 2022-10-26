@@ -72,9 +72,13 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   toggleTask(id: number) {
     this.tasksService.toggleTaskDone(id).subscribe(() => {
+      const date = new Date()
+      const doneDate = date.toISOString()
       this.tasks = this.tasks.map(t => {
         if (t.id === id) {
           t.isDone = !t.isDone
+          t.doneDate = t.isDone ? doneDate : '',
+          t.remindOnDate = ''
         }
         return t
       })

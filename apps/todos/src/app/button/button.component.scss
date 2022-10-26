@@ -1,24 +1,27 @@
-.btn-close {
-    width: 100%;
-    margin: 5px 0;
-}
+.btn {
 
-.btn-second {
-    background-color: #888888;
-    height: 30px;
-    padding: 5px 10px;
-    margin: 10px 0px;
-    width: initial;
+    &-close {
+        width: 100%;
+        margin: 5px 0;
+    }
     
-    &:hover{
-        background-color: #666;
-    }
-
-    &:active {
-        background-color: #222;
-    }
-
-    &:focus {
-        outline: 1px solid #222;
+    &-second {
+        background-color: #888888;
+        height: 30px;
+        padding: 5px 10px;
+        margin: 10px 0px;
+        width: initial;
+        
+        &:hover{
+            background-color: #666;
+        }
+        
+        &:active {
+            background-color: #222;
+        }
+        
+        &:focus {
+            outline: 1px solid #222;
+        }
     }
 }

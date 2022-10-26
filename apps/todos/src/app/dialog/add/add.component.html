@@ -1,11 +1,36 @@
-<h1 mat-dialog-title>Hi </h1>
+<h1 mat-dialog-title>Create new Task</h1>
 <div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <!-- <mat-form-field appearance="fill">
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field> -->
+  <form class="add-form" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+      <label for="title">task title</label>
+      <input
+        type="text"
+        name="title"
+        [(ngModel)]="title"
+        id="title"
+        placeholder="Add Task Summary"
+      />
+    </div>
+    <div class="form-control">
+      <label for="description">description</label>
+      <input
+        type="text"
+        name="description"
+        [(ngModel)]="description"
+        id="description"
+        placeholder="Add Description"
+      />
+    </div>
+    <input
+      type="submit"
+      value="Save Task"
+      class="btn submit"
+      style="width: 100%"
+    />
+  </form>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-</div>
+<todo-app-button text="Cancel" redirectTo="/" (btnClick)="onNoClick()"></todo-app-button>
+
+<!-- <div mat-dialog-actions>
+  <todo-app-button mat-button text="close" (click)="onNoClick()"></todo-app-button>
+</div> -->

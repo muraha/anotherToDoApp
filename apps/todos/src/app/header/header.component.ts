@@ -20,10 +20,6 @@ export class HeaderComponent implements OnInit {
   ) {''}
   ngOnInit(): void {''}
 
-  handleAdd () {
-    this.addHandler.emit('TestTask')
-  }
-
   handleSearch() {
     this.eventService.searchTask(this.search)
   }
@@ -35,15 +31,11 @@ export class HeaderComponent implements OnInit {
 
   dialogOpen() {
     const dialogRef = this.dialog.open(AddComponent, {
-      width: '250px',
-      height: '300px',
-      // data: {name: this.name, animal: this.animal},
+      minWidth: '50vw',
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed'), result;
-      // this.animal = result;
     });
   }
-
 }
