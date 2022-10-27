@@ -19,9 +19,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
     private tasksService: TasksService,
     private eventService: EventService,
   ) { }
-
+  
   destroy$ = new BehaviorSubject<void>(undefined);
-
+  
   ngOnInit(): void {
     this.eventService.onSubmit().subscribe(data => this.addNewTask(data));
     this.eventService.onUpdate().subscribe(data => this.updateTask(data))
@@ -41,7 +41,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   getAllTasks() {
     this.tasksService.getAllTasks().subscribe(({ data: tasks, total: qty }) => {
       this.tasks = tasks
-      this.tasksQty = qty
+      this.tasksQty = qty      
     })
   }
 
@@ -52,10 +52,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   addNewTask(data: ITask) {
-    this.tasksService.addTask(data).subscribe(t => {
-      this.tasks.push(t)
-      this.tasks = this.tasks.sort((a, b) => b.id - a.id)
+    const sub = this.tasksService.addTask(data).subscribe(t => {
+      this.tasks.unshift(t)
       this.tasksQty += 1
+      sub.unsubscribe();
     })
   }
 

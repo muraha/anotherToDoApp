@@ -23,8 +23,11 @@ export class TasksService {
     let total: number
 
     if (word) {
-      [data, total] = await this.taskRepo.findAndCountBy({
-        title: Like(`%${word}%`),
+      [data, total] = await this.taskRepo.findAndCount({
+        where: {
+          title: Like(`%${word}%`),
+        },
+        order: { id: 'DESC' }
       })
       return { data, total }
     }

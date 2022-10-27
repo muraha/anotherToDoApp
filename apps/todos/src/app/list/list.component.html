@@ -1,4 +1,4 @@
-<div *ngFor="let t of tasks">
+<!-- <div *ngFor="let t of tasks">
   <div *ngIf="!t.isDone || shouldShowAll" class="list-todo">
     <div class="list-checkbox">
       <input
@@ -35,33 +35,49 @@
       </button>
     </div>
   </div>
-</div>
+</div> -->
 
-<!-- <table mat-table [dataSource]="tasks">
+<mat-table [dataSource]="tasks" class="mat-elevation-z2 table-list">
   <ng-container matColumnDef="isDone">
-    <th mat-header-cell *matHeaderCellDef>status</th>
-    <td mat-cell *matCellDef="let task">{{ task.isDone }}</td>
+    <mat-header-cell *matHeaderCellDef>status</mat-header-cell>
+    <mat-cell *matCellDef="let task">
+      <div class="list-checkbox">
+        <input
+          class="list-checkbox-input"
+          type="checkbox"
+          id="{{ task.id }}"
+          [checked]="task.isDone"
+          (click)="handleTaskToggle($event.target)"
+          style="top: 3px"
+        />
+        <label
+          class="list-checkbox-label list-checkbox-label__mat"
+          for="{{ task.id }}"
+          >|</label
+        >
+      </div>
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef>Title</th>
-    <td mat-cell *matCellDef="let task">{{ task.title }}</td>
-  </ng-container>
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>id</th>
-    <td mat-cell *matCellDef="let task">{{ task.id }}</td>
+    <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+    <mat-cell *matCellDef="let task" (click)="dialogOpen(task.id)">{{ task.title }}</mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="details">
-    <th mat-header-cell *matHeaderCellDef>action btn</th>
-    <td mat-cell *matCellDef="let task">
-      <todo-app-button
-        text="details"
-        [secondary]="true"
-        (btnClick)="handleOpenDetails({ target: $event.target, data: task.id })"
-      ></todo-app-button>
-    </td>
+  <ng-container matColumnDef="btns">
+    <mat-header-cell *matHeaderCellDef>delete</mat-header-cell>
+    <mat-cell *matCellDef="let task">
+      <button
+        class="list-delButton"
+        (click)="handleTaskDelete($event.target)"
+        data-id="{{ task.id }}"
+      >
+        +
+      </button>
+    </mat-cell>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-  <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
-</table> -->
+  <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+  <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"
+  [class.hidden]="!shouldShowAll && myRowData.isDone"
+  ></mat-row>
+</mat-table>

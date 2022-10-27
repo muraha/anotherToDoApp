@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
-
 import { ITask } from '@another-todo-app/api-interfaces';
 import { ItemDialogComponent } from '../dialog/item/item.component';
 
@@ -16,7 +15,7 @@ export class TodoListComponent implements OnInit {
   @Input() shouldShowAll = false;
   @Output() deleteEvent = new EventEmitter<number>();
   @Output() toggleEvent = new EventEmitter<number>();
-  columnsToDisplay = ['isDone', 'title', 'id'];
+  columnsToDisplay = ['isDone', 'title', 'btns'];
 
   constructor(
     public dialog: MatDialog,

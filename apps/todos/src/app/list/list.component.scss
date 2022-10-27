@@ -40,6 +40,13 @@
             transform: scale(0);
             transition: transform .3s ease;
         }
+
+        &__mat::after {
+            top: 2px;
+            left: 1px;
+            height: 17px;
+            width: 16px;
+        }
     }
 
     &-input {
@@ -108,4 +115,20 @@
     &:focus {
         outline: 1px solid rgb(252, 81, 81);
     }
+}
+
+.mat-column-isDone {
+    flex: 1 1 auto;
+}
+
+.mat-column-title {
+    flex: 10 0 400px;
+}
+
+.mat-column-btns {
+    flex: 0 0 auto;
+}
+
+.hidden {
+    display: none;
 }

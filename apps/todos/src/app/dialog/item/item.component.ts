@@ -56,6 +56,7 @@ export class ItemDialogComponent implements OnInit {
       remindOnDate: !this.isDone ? this.remindOnDate : '',
     }
     this.eventService.updateTask(updatedTask)
+    this.dialogRef.close();
   }
 
   onNoClick(): void {
