@@ -22,11 +22,11 @@ export class MainPageComponent implements OnInit, OnDestroy {
   
   destroy$ = new BehaviorSubject<void>(undefined);
   
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.eventService.onSubmit().subscribe(data => this.addNewTask(data));
     this.eventService.onUpdate().subscribe(data => this.updateTask(data))
     this.eventService.onSearch().pipe(debounceTime(500)).subscribe(text => this.searchTasks(text))
-    this.getAllTasks()
+    await this.getAllTasks()
   }
 
   ngOnDestroy() {
@@ -38,25 +38,23 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.shouldShowAll = !this.shouldShowAll
   }
 
-  getAllTasks() {
-    this.tasksService.getAllTasks().subscribe(({ data: tasks, total: qty }) => {
+  async getAllTasks() {
+    const { data: tasks, total: qty } = await this.tasksService.getAllTasks()
       this.tasks = tasks
       this.tasksQty = qty      
-    })
   }
 
-  searchTasks(text: string) {
-    this.tasksService.getAllTasks(text).subscribe(({ data: tasks }) => {
+  async searchTasks(text: string) {
+    const { data: tasks } = await this.tasksService.getAllTasks(text)
       this.tasks = tasks
-    })
   }
 
-  addNewTask(data: ITask) {
-    const sub = this.tasksService.addTask(data).subscribe(t => {
-      this.tasks.unshift(t)
-      this.tasksQty += 1
-      sub.unsubscribe();
-    })
+  async addNewTask(data: ITask) {
+    const task = await this.tasksService.addTask(data)
+    await this.getAllTasks()
+    //! the tasks array update made by .push or .unshift doesn't trigger list update. this.getAllTasks() - works well
+      // this.tasks.unshift(task)
+      // this.tasksQty += 1    
   }
 
   updateTask(data: ITask) {
