@@ -7,3 +7,26 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    groups:
+      angular:
+        patterns:
+        - "@angular*"
+        update-types:
+        - "minor"
+        - "patch"
+        ignore:
+        - dependency-name: "@angular*"
+          update-types: ["version-update:semver-major"]
+      nestjs:
+        patterns:
+        - "@nestjs*"
+        update-types:
+        - "minor"
+        - "patch"
+      nrwl:
+        patterns:
+        - "@nrwl*"
+        update-types:
+        - "minor"
+        - "patch"
+    
